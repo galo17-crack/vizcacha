@@ -13,11 +13,36 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script type="text/babel" src="./Vizcacha.jsx"></script>
-
   <script type="text/babel">
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<Vizcacha />);
+    const { useState, useEffect, useRef, useCallback } = React;
+
+    // Acá cargamos Vizcacha.jsx
+    fetch("./Vizcacha.jsx")
+      .then(response => response.text())
+      .then(code => {
+        const transformed = Babel.transform(code, {
+          presets: ["react"]
+        }).code;
+
+        const script = document.createElement("script");
+        script.textContent = transformed;
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+          const root = ReactDOM.createRoot(
+            document.getElementById("root")
+          );
+          root.render(React.createElement(Vizcacha));
+        }, 0);
+      })
+      .catch(error => {
+        document.body.innerHTML = `
+          <pre style="color:red; padding:20px;">
+            Error cargando Vizcacha.jsx:
+            ${error}
+          </pre>
+        `;
+      });
   </script>
 </body>
 </html>
