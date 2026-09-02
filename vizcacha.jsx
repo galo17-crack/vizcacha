@@ -772,3 +772,7 @@ const styles = {
   summaryQ: { flex: 1, fontSize: 13, color: "#B3AB96" },
   summaryScore: { fontSize: 14, fontWeight: 600 },
 };
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Vizcacha />
+);
