@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------------------------------------------------------
    VIZCACHA — trivia diaria argentina, puntaje por rareza.
@@ -445,7 +445,7 @@ function BurrowVisual({ level, animate }) {
 }
 
 /* -------------------- Componente principal -------------------- */
-export default function Vizcacha() {
+function Vizcacha() {
   const [phase, setPhase] = useState("landing");
   const [dailyQuestions, setDailyQuestions] = useState([]);
   const [qIndex, setQIndex] = useState(0);
